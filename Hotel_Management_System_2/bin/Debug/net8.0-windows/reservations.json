@@ -1,0 +1,42 @@
+[
+  {
+    "ReservationID": 1001,
+    "GuestID": 101,
+    "RoomNumber": 101,
+    "CheckInDate": "2025-01-10T00:00:00",
+    "CheckOutDate": "2025-01-15T00:00:00",
+    "PaymentStatus": 1
+  },
+  {
+    "ReservationID": 1002,
+    "GuestID": 102,
+    "RoomNumber": 102,
+    "CheckInDate": "2025-01-12T00:00:00",
+    "CheckOutDate": "2025-01-18T00:00:00",
+    "PaymentStatus": 0
+  },
+  {
+    "ReservationID": 1003,
+    "GuestID": 103,
+    "RoomNumber": 201,
+    "CheckInDate": "2025-02-01T00:00:00",
+    "CheckOutDate": "2025-02-07T00:00:00",
+    "PaymentStatus": 1
+  },
+  {
+    "ReservationID": 1004,
+    "GuestID": 104,
+    "RoomNumber": 202,
+    "CheckInDate": "2025-02-10T00:00:00",
+    "CheckOutDate": "2025-02-14T00:00:00",
+    "PaymentStatus": 2
+  },
+  {
+    "ReservationID": 1005,
+    "GuestID": 105,
+    "RoomNumber": 103,
+    "CheckInDate": "2025-03-01T00:00:00",
+    "CheckOutDate": "2025-03-05T00:00:00",
+    "PaymentStatus": 0
+  }
+]

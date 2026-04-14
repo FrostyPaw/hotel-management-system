@@ -1,0 +1,42 @@
+[
+  {
+    "GuestID": 101,
+    "FirstName": "John",
+    "LastName": "Smith",
+    "CheckInDate": "2025-01-10T00:00:00",
+    "CheckOutDate": "2025-01-15T00:00:00",
+    "RoomNumber": 101
+  },
+  {
+    "GuestID": 102,
+    "FirstName": "Anna",
+    "LastName": "Brown",
+    "CheckInDate": "2025-01-12T00:00:00",
+    "CheckOutDate": "2025-01-18T00:00:00",
+    "RoomNumber": 102
+  },
+  {
+    "GuestID": 103,
+    "FirstName": "Michael",
+    "LastName": "Johnson",
+    "CheckInDate": "2025-02-01T00:00:00",
+    "CheckOutDate": "2025-02-07T00:00:00",
+    "RoomNumber": 201
+  },
+  {
+    "GuestID": 104,
+    "FirstName": "Emily",
+    "LastName": "Wilson",
+    "CheckInDate": "2025-02-10T00:00:00",
+    "CheckOutDate": "2025-02-14T00:00:00",
+    "RoomNumber": 202
+  },
+  {
+    "GuestID": 105,
+    "FirstName": "David",
+    "LastName": "Taylor",
+    "CheckInDate": "2025-03-01T00:00:00",
+    "CheckOutDate": "2025-03-05T00:00:00",
+    "RoomNumber": 103
+  }
+]
