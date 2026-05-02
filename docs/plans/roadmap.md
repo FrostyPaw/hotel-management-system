@@ -37,3 +37,17 @@ The MVP includes:
 * Advanced statistics
 * Improved UI/UX
 * Multi-user support
+
+## Assignment 4 Update - Complete
+
+The reservation creation feature was implemented as a dedicated module using the Strategy pattern.
+
+### Completed
+- Created ReservationCreation module
+- Added separate validation strategies
+- Added module README documentation
+- Updated architecture diagram
+
+### Scope Adjustments
+The actual saving of reservations to JSON remains outside this module.
+This module focuses only on business validation logic to keep it clean, modular, and easier to test.
