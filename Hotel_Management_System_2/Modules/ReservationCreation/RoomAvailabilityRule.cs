@@ -13,7 +13,7 @@ namespace Hotel_Management_System_2.Modules.ReservationCreation
             List<Reservation> reservations)
         {
             bool overlaps = reservations.Any(r =>
-                r.RoomId == request.RoomId &&
+                r.RoomNumber == request.RoomId &&
                 request.CheckInDate < r.CheckOutDate &&
                 request.CheckOutDate > r.CheckInDate
             );
