@@ -3,7 +3,6 @@
 ```mermaid
 flowchart TD
     A[Reservation Request] --> B[ReservationCreationService]
-
     B --> C[ValidDateRangeRule]
     B --> D[GuestExistsRule]
     B --> E[RoomExistsRule]
