@@ -51,3 +51,19 @@ The reservation creation feature was implemented as a dedicated module using the
 ### Scope Adjustments
 The actual saving of reservations to JSON remains outside this module.
 This module focuses only on business validation logic to keep it clean, modular, and easier to test.
+
+## Assignment 5 Update - Complete
+
+A UI design contract was added in `/docs/DESIGN.md`.
+
+A Windows Forms UI was created for the reservation creation feature and connected to the existing `ReservationCreationService`.
+
+### Completed
+- Added UI design contract
+- Created reservation creation UI form
+- Connected UI button action to backend validation logic
+- Preserved module-based architecture
+
+### Scope Adjustments
+The UI validates reservation creation but does not directly save the reservation to JSON.
+Persistence remains outside the pure business validation module.
