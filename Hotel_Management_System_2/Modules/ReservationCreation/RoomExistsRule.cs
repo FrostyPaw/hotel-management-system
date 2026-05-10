@@ -12,7 +12,7 @@ namespace Hotel_Management_System_2.Modules.ReservationCreation
             List<Room> rooms,
             List<Reservation> reservations)
         {
-            bool roomExists = rooms.Any(r => r.Id == request.RoomId);
+            bool roomExists = rooms.Any(r => r.RoomNumber == request.RoomId);
 
             if (!roomExists)
             {
