@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hotel Management System - Reservation Demo</title>
+
+  <style>
+    :root {
+      --primary: #2563EB;
+      --secondary: #64748B;
+      --background: #F8FAFC;
+      --surface: #FFFFFF;
+      --text: #0F172A;
+      --error: #DC2626;
+      --success: #16A34A;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--background);
+      color: var(--text);
+    }
+
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 24px;
+      text-align: center;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 32px auto;
+      padding: 16px;
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin-top: 0;
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px;
+      border: 1px solid #CBD5E1;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 18px;
+      border: none;
+      border-radius: 8px;
+      background: var(--primary);
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .result {
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    .success {
+      background: #DCFCE7;
+      color: var(--success);
+    }
+
+    .error {
+      background: #FEE2E2;
+      color: var(--error);
+    }
+
+    .hint {
+      color: var(--secondary);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    code {
+      background: #E2E8F0;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Hotel Management System</h1>
+    <p>Reservation Creation Demo</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Create Reservation</h2>
+
+      <p class="hint">
+        This web UI demonstrates the same reservation validation logic as the
+        <code>ReservationCreation</code> module from the C# project.
+      </p>
+
+      <label for="guestId">Guest ID</label>
+      <input id="guestId" type="number" value="1" />
+
+      <label for="roomNumber">Room Number</label>
+      <input id="roomNumber" type="number" value="101" />
+
+      <label for="checkIn">Check-in Date</label>
+      <input id="checkIn" type="date" />
+
+      <label for="checkOut">Check-out Date</label>
+      <input id="checkOut" type="date" />
+
+      <button onclick="validateReservation()">Validate Reservation</button>
+
+      <div id="result"></div>
+    </section>
+
+    <section class="card">
+      <h2>Demo Data</h2>
+      <p class="hint">
+        Existing guests: <code>1</code>, <code>2</code><br />
+        Existing rooms: <code>101</code>, <code>102</code><br />
+        Room <code>101</code> is already booked from <code>2026-04-10</code> to <code>2026-04-15</code>.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    const guests = [
+      { guestId: 1, name: "Alice Smith" },
+      { guestId: 2, name: "Bob Johnson" }
+    ];
+
+    const rooms = [
+      { roomNumber: 101, type: "Single" },
+      { roomNumber: 102, type: "Double" }
+    ];
+
+    const reservations = [
+      {
+        guestId: 1,
+        roomNumber: 101,
+        checkInDate: "2026-04-10",
+        checkOutDate: "2026-04-15"
+      }
+    ];
+
+    function result(success, message) {
+      return { success, message };
+    }
+
+    function validDateRangeRule(request) {
+      if (!request.checkInDate || !request.checkOutDate) {
+        return result(false, "Both check-in and check-out dates are required.");
+      }
+
+      if (request.checkOutDate <= request.checkInDate) {
+        return result(false, "Check-out date must be after check-in date.");
+      }
+
+      return result(true, "Date range is valid.");
+    }
+
+    function guestExistsRule(request, guests) {
+      const exists = guests.some(g => g.guestId === request.guestId);
+
+      if (!exists) {
+        return result(false, "Guest does not exist.");
+      }
+
+      return result(true, "Guest exists.");
+    }
+
+    function roomExistsRule(request, rooms) {
+      const exists = rooms.some(r => r.roomNumber === request.roomNumber);
+
+      if (!exists) {
+        return result(false, "Room does not exist.");
+      }
+
+      return result(true, "Room exists.");
+    }
+
+    function roomAvailabilityRule(request, reservations) {
+      const overlaps = reservations.some(r =>
+        r.roomNumber === request.roomNumber &&
+        request.checkInDate < r.checkOutDate &&
+        request.checkOutDate > r.checkInDate
+      );
+
+      if (overlaps) {
+        return result(false, "Room is not available for the selected dates.");
+      }
+
+      return result(true, "Room is available.");
+    }
+
+    function validateReservationPure(request, guests, rooms, reservations) {
+      const rules = [
+        () => validDateRangeRule(request),
+        () => guestExistsRule(request, guests),
+        () => roomExistsRule(request, rooms),
+        () => roomAvailabilityRule(request, reservations)
+      ];
+
+      for (const rule of rules) {
+        const validation = rule();
+
+        if (!validation.success) {
+          return validation;
+        }
+      }
+
+      return result(true, "Reservation can be created.");
+    }
+
+    function validateReservation() {
+      const request = {
+        guestId: Number(document.getElementById("guestId").value),
+        roomNumber: Number(document.getElementById("roomNumber").value),
+        checkInDate: document.getElementById("checkIn").value,
+        checkOutDate: document.getElementById("checkOut").value
+      };
+
+      const validation = validateReservationPure(
+        request,
+        guests,
+        rooms,
+        reservations
+      );
+
+      const resultBox = document.getElementById("result");
+      resultBox.className = validation.success ? "result success" : "result error";
+      resultBox.textContent = validation.message;
+    }
+  </script>
+</body>
+</html>
