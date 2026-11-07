@@ -78,7 +78,7 @@ $app = Start-Process -FilePath (Join-Path $build 'Hotel_Management_System_2.exe'
 
 ## Expected and observed
 
-Codex ran the build and operated the desktop app on November 7, 2026, on Windows (build 26300) with PowerShell 7.6.9, SDK 9.0.300, and the .NET 8 Windows Desktop runtime installed. The Git archive, build, and launcher commands completed with exit code `0`. The build reported 13 warnings and 0 errors. The app window opened and closed normally. The app process's own exit code was unavailable in this run.
+An AI assistant built the project and ran the desktop smoke check on November 7, 2026, on Windows (build 26300) with PowerShell 7.6.9, SDK 9.0.300, and the .NET 8 Windows Desktop runtime installed. The Git archive, build, and launcher commands completed with exit code `0`. The build reported 13 warnings and 0 errors. The app window opened and closed normally. The app process's own exit code was unavailable in this run.
 
 | Check | Input and steps | Expected | Observed |
 | --- | --- | --- | --- |
