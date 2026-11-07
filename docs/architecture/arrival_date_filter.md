@@ -1,4 +1,4 @@
-# H1 architecture decision — filter reservations by arrival date
+# H1 architecture decision - filter reservations by arrival date
 
 Proposed for H2. Team review pending.
 

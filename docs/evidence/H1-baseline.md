@@ -1,4 +1,4 @@
-# H1 baseline run — desktop reservations
+# H1 baseline run - desktop reservations
 
 [Part I revision `bb53719407724575e6d7e936256a0b268cec13c0`](https://github.com/FrostyPaw/hotel-management-system/commit/bb53719407724575e6d7e936256a0b268cec13c0). This run checks the inherited list, text search, and an existing validation error.
 
